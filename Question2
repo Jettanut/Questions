@@ -1,0 +1,12 @@
+'''install package'''
+
+#!pip install re
+#!pip install os
+#!pip install io
+#!pip install pandas
+#!pip install numpy
+#!pip install seaborn
+#!pip install matplotlib
+#!pip install sklearn
+#!pip install sweetviz
+#!pip install tqdm

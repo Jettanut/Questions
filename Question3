@@ -11,7 +11,7 @@ import pandas_datareader.data as pdr
 import arch
 
 # A
-Bitcoin = pdr.get_data_yahoo("BTC-USD", start="2022-04-26", end="2022-07-26")
+Bitcoin = pdr.get_data_yahoo("BTC-USD", start="2022-04-27", end="2022-07-27")
 print(Bitcoin.columns)
 # Create new variable name stock_data
 stock_data = Bitcoin[['Close']]
@@ -122,6 +122,7 @@ Put_Price = calculate_put_option_price(S_0,T,r,sigma)
 print(Put_Price)
 
 # ii)Finite Difference Method
+# Source: https://towardsdatascience.com/option-pricing-using-the-black-scholes-model-without-the-formula-e5c002771e2f
 from mpl_toolkits.mplot3d import Axes3D
 import scipy.sparse
 
@@ -176,7 +177,7 @@ r = 0.02
 sigma =1.5
 N = 50
 M = 50
-price_call_explicit( K, T, r, sigma, N, M)
+price_put_explicit( K, T, r, sigma, N, M)
 # iii) Monte Carlo Simulation
  def MonteCarloPricing(S_0,T,r,sigma,N):
     num_of_steps = T
@@ -211,6 +212,29 @@ sigma = 1.5
 N = 10000
 print(MonteCarloPricing(S_0,T,r,sigma,N)) 
 # 1)I decide to use implied volatility to calculated.Because,it's the highest value.
+# 2) -
 
-# iv)
-
+# iv) 
+''' Black–Scholes model
+    - The Black–Scholes formula gives a theoretical estimate of the price of European-style options and shows that the option has a unique price given the risk of the security and its expected to return.
+'''
+# Source: https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model
+''' Finite difference methods
+    - Finite difference methods are used to price options by approximating the differential equation that describes how an option price evolves over time by
+      a set of (discrete-time) difference equations.
+    - This method can solve derivative pricing problems that have, in general, the same level of complexity as those problems solved by tree approaches,but,
+      given their relative complexity, are usually employed only when other approaches are inappropriate.
+      At the same time, like tree-based methods, this approach is limited in terms of the number of underlying variables, and for problems with Monte Carlo methods for option pricing are usually preferred.
+'''
+# Source: https://en.wikipedia.org/wiki/Finite_difference_methods_for_option_pricing
+''' Monte Carlo methods
+    - Monte Carlo option model uses Monte Carlo methods[Notes 1] to calculate the value of an option with multiple sources of uncertainty or with complicated features. 
+    - Monte Carlo Methods are particularly useful in the valuation of options with multiple sources of uncertainty or with complicated features, which would make them difficult to value 
+      through a straightforward Black–Scholes-style or lattice based computation.
+    - The technique is thus widely used in valuing path dependent structures like lookback- and Asian options and in real options analysis.Additionally, as above, 
+      the modeller is not limited as to the probability distribution assumed.
+    - If an analytical technique for valuing the option exists—or even a numeric technique, such as a (modified) pricing tree—Monte Carlo methods will usually be too slow to be competitive.  
+'''    
+# Source: https://en.wikipedia.org/wiki/Monte_Carlo_methods_for_option_pricing
+# From these 3 models,In my opinion I think the 1st model;Black Scholes model; is the best model.Because,it gives the highest put pricing value.
+# The value of 2nd models,I think the value is over.
